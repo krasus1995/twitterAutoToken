@@ -5,9 +5,9 @@ name: guest_token
 # Controls when the workflow will run
 on:
   # If you want enable auto update twitter guest token,you must Uncomment the following two lines!
- schedule:
-   - cron: '*/5 * * * *'
- workflow_dispatch:
+   schedule:
+   - cron: '*/5  * * * *'
+  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -36,6 +36,7 @@ jobs:
             cd guest
             sudo cp -p ./chromedriver /usr/bin/
             chmod -R 777 /usr/bin/chromedriver
+            sudo dpkg -i ./google-chrome_amd64.deb
       - name: Run
         run: |
             cd guest
@@ -51,5 +52,4 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
              github_token: ${{ secrets.GITHUB_TOKEN }}
-            
-  
+
